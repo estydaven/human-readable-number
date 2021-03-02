@@ -1,70 +1,63 @@
-//let number = 19;
+//let number = 999;
 module.exports = function toReadable (number) {
-  let nums = {
-      0: 'zero',
-      1: 'one',
-      2: 'two',
-      3: 'three',
-      4: 'four',
-      5: 'five',
-      6: 'six',
-      7: 'seven',
-      8: 'eight',
-      9: 'nine',
-      10: 'ten'
-  };
-  let numbers = {
-      11: 'eleven',
-      12: 'twelve',
-      13: 'thirteen',
-      14: 'fourteen',
-      15: 'fifteen',
-      16: 'sixteen',
-      17: 'seventeen',
-      18: 'eighteen',
-      19: 'nineteen'
-  };
-  let tens = {
-      2: 'twenty', 
-      3: 'thirty', 
-      4: 'fourty', 
-      5: 'fifty', 
-      6: 'sixty', 
-      7: 'seventy', 
-      8: 'eighty', 
-      9: 'ninety'
-  };
+  let simpleNumbers = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];     
+  let tenNumbers = ['', '', 'twenty', 'thirty', 'fourty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety', 'one hundred'];
   let result = '';
+  let ten = tenNumbers[Math.trunc(number / 10)];
+  let hundred = simpleNumbers[Math.trunc(number / 100)];
+  let hundredTen = simpleNumbers[number % 100];
+  let num = simpleNumbers[number % 10];
+  let leftTen = number % 100;
+  let bigHundred = tenNumbers[Math.trunc(leftTen / 10)];
+  
+  if (number === 0){
+    return result = 'zero';
+  }
+  if (number <= 20){
+    return result = simpleNumbers[number];
+  }
+  if (number >= 20 && number <= 100){
+    return result = ten + " " + num;
+  }
+  if (number > 100 && leftTen < 20){
+    return result = hundred + ' hundred ' + hundredTen;
+  }
+  if (number > 100 && leftTen >= 20){
+    return result = hundred + ' hundred ' + bigHundred + ' ' + num;
+  }
+  /*let result = '';
   let string = number.toString();
   let keysNums = Object.keys(nums);
   let keysNumbers = Object.keys(numbers);
   let keysTens = Object.keys(tens);
 
   if (number === 0){
-    return nums[0];
+    console.log(nums[0]);
   }
 
     if (string.length = 1){
       for (let i = 0; i < keysNums.length; i++){
-          if(string == keysNums[i]){
-            return result = nums[keysNums[i]];     
+          if(string === keysNums[i]){
+            console.log(result = nums[keysNums[i]]);     
           }
       }
     }
  
     if (string.length = 2 && string[0] == 1){
       for (let i = 0; i < keysNumbers.length; i++){
-          if(string == keysNumbers[i]){
-            return result = numbers[keysNumbers[i]];
+          if(string === keysNumbers[i]){
+            console.log(result = numbers[keysNumbers[i]]);
           }
       }
     }
   
-    let leftover = Math.trunc(number / 10);
+    let leftover = string[0];    
+    let digit = string[1];
     for (let i = 0; i < keysTens.length; i++){
-      if (leftover == keysTens[i]){
-        return result = tens[keysTens[i]]; 
+      if (leftover === keysTens[i] || digit === keysNums[i]){        
+        console.log(result = (tens[keysTens[i]]) + " " + (nums[keysNums[i]])); 
       }
-    }
-
+    }*/
+    
+    
 }
